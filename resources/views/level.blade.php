@@ -11,7 +11,7 @@
                 <th>Kode Level</th>
                 <th>Nama Level</th>
             </tr>
-            @foreach ($data as $d)
+            @foreach ($data as $d) <!-- Alias menjadi $d--!>
                 <tr>
                     <td>{{$d -> level_id}}</td>
                     <td>{{$d -> level_kode}}</td>

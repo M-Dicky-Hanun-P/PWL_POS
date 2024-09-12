@@ -9,7 +9,7 @@ class LevelController extends Controller
 {
     public function index()
     {
-        // DB::insert('insert into m_level(level_kode, level_nama, created_at) values(?, ?, ?)', ['CUS', 'Pelanggan', now()]);
+        // DB::insert('insert into m_level(level_kode, level_nama, created_at) values(?, ?, ?)', ['4', 'Pelanggan', now()]);
 
         // return 'Insert data baru berhasil';
 
@@ -20,7 +20,10 @@ class LevelController extends Controller
         // return 'Delete data berhasil. Jumlah data yang dihapus: ' . $row . ' baris';
 
         // Menampilkan data
-        $data = DB::select('select * from m_level');
-        return view('level' , ['data' => $data]);
+        // $data = DB::select('select * from m_level');
+        // return view('level' , ['data' => $data]);
+
+        $row = DB::update('update m_level set level_id = ?, level_kode = ? where level_nama = ? ', [4, 'CUS', 'Pelanggan']);
+        return 'update data berhasil. jumlah data yang diupdate: ' . $row . 'baris';
     }
 }

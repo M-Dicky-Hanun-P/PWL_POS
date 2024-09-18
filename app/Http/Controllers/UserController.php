@@ -22,11 +22,14 @@ class UserController extends Controller
         // $user = UserModel::all();
         // return view('user', ['data' => $user]);
 
-        //Praktikum 2
-        $user = UserModel::findOr(20, ['username', 'nama'], function () {
-            abort(404);
-        });
-        return view('user', ['data' => $user]);
+        //Praktikum 2.1
+        // $user = UserModel::findOr(20, ['username', 'nama'], function () {
+        //     abort(404);
+        // });
+        // return view('user', ['data' => $user]);
 
+        //Praktikum 2.2
+        $user = UserModel::where('username', 'manager9')->firstOrFail();
+        return view('user', ['data' => $user]);
     }
 }

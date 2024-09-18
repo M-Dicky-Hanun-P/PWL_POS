@@ -4,27 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\UserModel;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
     public function index()
     {
-        // Menambahkan data user dengan Eloquent Model
+            //Praktikum 1
         // $data = [
-        //     'username' => 'customer-1',
-        //     'nama' => 'Pelanggan',
-        //     'password' => Hash::make('12345'),
-        //     'level_id' => 4
+        //     'level_id' => 2,
+        //     'username' => 'manager_tiga',
+        //     'nama' => 'Manager 3',
+        //     'password' => Hash::make('12345')
         // ];
-        // UserModel::insert($data); // Menambahkan data ke tabel m_user
+        // UserModel::create($data);
 
         // // Mencoba akses model UserModel
-        $user = UserModel::all(); //Mengambil semua data dari tabel m_user
+        // $user = UserModel::all();
+        // return view('user', ['data' => $user]);
+
+        $user = UserModel::find(1);
         return view('user', ['data' => $user]);
 
-        // $row = DB::update('update m_user set user_id = ?, level_id = ?, username = ? where nama = ? ', [4, 4, 'customer-1', 'Pelanggan Pertama']);
-        // return 'update data berhasil. jumlah data yang diupdate: ' . $row . 'baris';
     }
 }

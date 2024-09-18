@@ -65,7 +65,11 @@ class UserController extends Controller
 
 
         // Praktikum 2.6
-        $user = UserModel::all();
+        // $user = UserModel::all();
+        // return view('user', ['data' => $user]);
+
+        // Praktikum 2.7
+        $user = UserModel::with('level')->get();
         return view('user', ['data' => $user]);
     }
     public function tambah()

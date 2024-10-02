@@ -15,16 +15,21 @@ use App\Http\Controllers\SupplierController;
 Route::get('/', [WelcomeController::class, 'index']);
 Route::get('/level', [WelcomeController::class, 'index']);
 
-// Jobsheet 5 Praktikum 3
+// Jobsheet 6 Praktikum 1, 2, 3
 Route::group(['prefix' => 'user'], function(){
     Route::get('/', [UserController::class, 'index']);      // Menampilkan halaman awal user
     Route::post('/list', [UserController::class, 'list']);      // Menampilkan data user dalam bentuk jeson untuk datatables
     Route::get('/create', [UserController::class, 'create']);      // Menampilkan halaman form tambah user
     Route::post('/', [UserController::class, 'store']);      // Menyimpan data user baru
+    Route::get('/create_ajax', [UserController::class, 'create_ajax']); // Menampilkan halaman form tambah user Ajax
+    Route::post('/ajax', [UserController::class, 'store_ajax']); // Menampilkan data user baru
     Route::get('/{id}', [UserController::class, 'show']);      // Menampilkan detail user
     Route::get('/{id}/edit', [UserController::class, 'edit']);      // Menampilkan halaman form edit user
     Route::put('/{id}', [UserController::class, 'update']);      // Menyimpan perubahan data user
+    Route::get('/{id}/edit_ajax', [UserController::class, 'edit_ajax']); // Menampilkan halaman form edit user Ajax
+    Route::put('/{id}/update_ajax', [UserController::class, 'update_ajax']); // Menyimpan perubahan data user Ajax
     Route::delete('/{id}', [UserController::class, 'destroy']);      // Menghapus data user
+
 });
 
 Route::group(['prefix' => 'level'], function(){

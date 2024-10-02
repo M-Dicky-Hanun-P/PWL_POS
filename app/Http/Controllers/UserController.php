@@ -236,7 +236,7 @@ class userController extends Controller
         return redirect('/');
     }
 
-   // Menampilkan halaman form edit user ajax
+    // Menampilkan halaman form edit user ajax
     public function edit_ajax(string $id)
     {
         $user = UserModel::find($id);
@@ -244,7 +244,7 @@ class userController extends Controller
 
         return view('user.edit_ajax', ['user' => $user, 'level' => $level]);
     }
-   
+
     public function update_ajax(Request $request, $id)
     {
         // cek apakah request dari ajax 
@@ -280,6 +280,33 @@ class userController extends Controller
             } else {
                 return response()->json([
                     'status'  => false,
+                    'message' => 'Data tidak ditemukan'
+                ]);
+            }
+        }
+        return redirect('/');
+    }
+
+    public function confirm_ajax(string $id)
+    {
+        $user = UserModel::find($id);
+        return view('user.confirm_ajax', ['user' => $user]);
+    }
+
+    public function delete_ajax(Request $request, $id)
+    {
+        // cek apakah request dari ajax
+        if ($request->ajax() || $request->wantsJson()) {
+            $user = UserModel::find($id);
+            if ($user) {
+                $user->delete();
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Data berhasil dihapus'
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
                     'message' => 'Data tidak ditemukan'
                 ]);
             }

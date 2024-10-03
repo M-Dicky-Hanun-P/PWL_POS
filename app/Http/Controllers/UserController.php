@@ -236,6 +236,14 @@ class userController extends Controller
         return redirect('/');
     }
 
+    // Menampilkan halaman detail user ajax
+    public function show_ajax(string $id)
+    {
+        $user = UserModel::find($id);
+        $level = LevelModel::select('level_id', 'level_nama')->get();
+
+        return view('user.show_ajax', ['user' => $user, 'level' => $level]);
+    }
     // Menampilkan halaman form edit user ajax
     public function edit_ajax(string $id)
     {

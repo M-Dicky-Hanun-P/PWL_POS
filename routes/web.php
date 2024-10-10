@@ -40,7 +40,8 @@ Route::middleware(['auth'])->group(function () {
     });
 
     // Jobsheet 6 Tugas m_level
-    Route::group(['prefix' => 'level'], function () {
+    // Jobsheet 7 Praktikum 2
+    Route::group(['prefix' => 'level','middleware'=>'authorize:ADM'], function () {
         Route::get('/', [LevelController::class, 'index']);         // menampilkan halaman awal level
         Route::post('/list', [LevelController::class, 'list']);     // menampilkan data level dalam bentuk json untuk datatables
         Route::get('/create', [LevelController::class, 'create']);  // menampilkan halaman form tambah level

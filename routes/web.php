@@ -41,7 +41,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Jobsheet 6 Tugas m_level
     // Jobsheet 7 Praktikum 2
-    Route::group(['prefix' => 'level','middleware'=>'authorize:ADM'], function () {
+    Route::group(['prefix' => 'level', 'middleware' => 'authorize:ADM'], function () {
         Route::get('/', [LevelController::class, 'index']);         // menampilkan halaman awal level
         Route::post('/list', [LevelController::class, 'list']);     // menampilkan data level dalam bentuk json untuk datatables
         Route::get('/create', [LevelController::class, 'create']);  // menampilkan halaman form tambah level
@@ -60,7 +60,8 @@ Route::middleware(['auth'])->group(function () {
     });
 
     // Jobsheet 6 Tugas m_kategori
-    Route::group(['prefix' => 'kategori'], function () {
+    // Jobsheet 7 Tugas 3
+    Route::group(['prefix' =>'kategori','middleware'=>'authorize:ADM,MNG,STF'],function(){
         Route::get('/', [KategoriController::class, 'index']);      // Menampilkan halaman awal kategori
         Route::post('/list', [KategoriController::class, 'list']);      // Menampilkan data kategori dalam bentuk jeson untuk datatables
         Route::get('/create', [KategoriController::class, 'create']);      // Menampilkan halaman form tambah kategori
@@ -79,7 +80,8 @@ Route::middleware(['auth'])->group(function () {
     });
 
     // Jobsheet 6 Tugas m_supplier
-    Route::group(['prefix' => 'supplier'], function () {
+    // Jobsheet 7 Tugas 3
+    Route::group(['prefix' =>'supplier', 'middleware'=>'authorize:ADM,MNG,STF'],function(){
         Route::get('/', [SupplierController::class, 'index']);      // Menampilkan halaman awal Supplier
         Route::post('/list', [SupplierController::class, 'list']);      // Menampilkan data Supplier dalam bentuk jeson untuk datatables
         Route::get('/create', [SupplierController::class, 'create']);      // Menampilkan halaman form tambah Supplier
@@ -98,7 +100,8 @@ Route::middleware(['auth'])->group(function () {
     });
 
     // Jobsheet 6 Tugas m_barang
-    Route::group(['prefix' => 'barang'], function () {
+    // Jobsheet 7 Praktikum 3
+    Route::group(['prefix' => 'barang', 'middleware' => 'authorize:ADM,MNG'], function () {
         Route::get('/', [BarangController::class, 'index']);      // Menampilkan halaman awal Barang
         Route::post('/list', [BarangController::class, 'list']);      // Menampilkan data Barang dalam bentuk jeson untuk datatables
         Route::get('/create', [BarangController::class, 'create']);      // Menampilkan halaman form tambah Barang

@@ -7,6 +7,7 @@ use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\StokController;
 use App\Http\Controllers\SupplierController;
 
 Route::pattern('id', '[0-9]+'); // artinya ketika ada parameter {id}, maka harus berupa angka
@@ -22,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [WelcomeController::class, 'index']);
 
     // Jobsheet 6 Praktikum 1, 2, 3
+    // Jobsheet 8 Tugas 3
     Route::group(['prefix' => 'user'], function () {
         Route::get('/', [UserController::class, 'index']);      // Menampilkan halaman awal user
         Route::post('/list', [UserController::class, 'list']);      // Menampilkan data user dalam bentuk jeson untuk datatables
@@ -38,10 +40,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{id}/delete_ajax', [UserController::class, 'confirm_ajax']); // Untuk menampilkan form konfirmasi delete user Ajax
         Route::delete('/{id}/delete_ajax', [UserController::class, 'delete_ajax']); // Untuk menghapus data user Ajax
         Route::delete('/{id}', [UserController::class, 'destroy']);      // Menghapus data user
+        Route::get('/import', [UserController::class, 'import']);      // ajax form upload excel
+        Route::post('/import_ajax', [UserController::class, 'import_ajax']);      // ajax import excel
+        Route::get('/export_excel', [UserController::class, 'export_excel']);      // export excel
+        Route::get('/export_pdf', [UserController::class, 'export_pdf']);      // export pdf
     });
 
     // Jobsheet 6 Tugas m_level
     // Jobsheet 7 Praktikum 2
+    // Jobsheet 8 Tugas 3
     Route::group(['prefix' => 'level', 'middleware' => 'authorize:ADM'], function () {
         Route::get('/', [LevelController::class, 'index']);         // menampilkan halaman awal level
         Route::post('/list', [LevelController::class, 'list']);     // menampilkan data level dalam bentuk json untuk datatables
@@ -58,11 +65,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{id}/delete_ajax', [LevelController::class, 'confirm_ajax']); // Untuk menampilkan form konfirmasi delete level Ajax
         Route::delete('/{id}/delete_ajax', [LevelController::class, 'delete_ajax']); // Untuk menghapus data level Ajax
         Route::delete('/{id}', [LevelController::class, 'destroy']); // menghapus data level
+        Route::get('/import', [LevelController::class, 'import']);      // ajax form upload excel
+        Route::post('/import_ajax', [LevelController::class, 'import_ajax']);      // ajax import excel
+        Route::get('/export_excel', [LevelController::class, 'export_excel']);      // export excel
+        Route::get('/export_pdf', [LevelController::class, 'export_pdf']);      // export pdf
     });
 
     // Jobsheet 6 Tugas m_kategori
     // Jobsheet 7 Tugas 3
-    Route::group(['prefix' =>'kategori','middleware'=>'authorize:ADM,MNG,STF'],function(){
+    // Jobsheet 8 Tugas 3
+    Route::group(['prefix' => 'kategori', 'middleware' => 'authorize:ADM,MNG,STF'], function () {
         Route::get('/', [KategoriController::class, 'index']);      // Menampilkan halaman awal kategori
         Route::post('/list', [KategoriController::class, 'list']);      // Menampilkan data kategori dalam bentuk jeson untuk datatables
         Route::get('/create', [KategoriController::class, 'create']);      // Menampilkan halaman form tambah kategori
@@ -78,11 +90,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{id}/delete_ajax', [KategoriController::class, 'confirm_ajax']); // Untuk menampilkan form konfirmasi delete kategori Ajax
         Route::delete('/{id}/delete_ajax', [KategoriController::class, 'delete_ajax']); // Untuk menghapus data kategori  Ajax
         Route::delete('/{id}', [KategoriController::class, 'destroy']);      // Menghapus data kategori
+        Route::get('/import', [KategoriController::class, 'import']);      // ajax form upload excel
+        Route::post('/import_ajax', [KategoriController::class, 'import_ajax']);      // ajax import excel
+        Route::get('/export_excel', [KategoriController::class, 'export_excel']);      // export excel
+        Route::get('/export_pdf', [KategoriController::class, 'export_pdf']);      // export pdf
     });
 
     // Jobsheet 6 Tugas m_supplier
     // Jobsheet 7 Tugas 3
-    Route::group(['prefix' =>'supplier', 'middleware'=>'authorize:ADM,MNG,STF'],function(){
+    // Jobsheet 8 Tugas 3
+    Route::group(['prefix' => 'supplier', 'middleware' => 'authorize:ADM,MNG,STF'], function () {
         Route::get('/', [SupplierController::class, 'index']);      // Menampilkan halaman awal Supplier
         Route::post('/list', [SupplierController::class, 'list']);      // Menampilkan data Supplier dalam bentuk jeson untuk datatables
         Route::get('/create', [SupplierController::class, 'create']);      // Menampilkan halaman form tambah Supplier
@@ -98,10 +115,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{id}/delete_ajax', [SupplierController::class, 'confirm_ajax']); // Untuk menampilkan form supplier delete kategori Ajax
         Route::delete('/{id}/delete_ajax', [SupplierController::class, 'delete_ajax']); // Untuk menghapus data supplier  Ajax
         Route::delete('/{id}', [SupplierController::class, 'destroy']);      // Menghapus data Supplier
+        Route::get('/import', [SupplierController::class, 'import']);      // ajax form upload excel
+        Route::post('/import_ajax', [SupplierController::class, 'import_ajax']);      // ajax import excel
+        Route::get('/export_excel', [SupplierController::class, 'export_excel']);      // export excel
+        Route::get('/export_pdf', [SupplierController::class, 'export_pdf']);      // export pdf
     });
 
     // Jobsheet 6 Tugas m_barang
     // Jobsheet 7 Praktikum 3
+    // Jobsheet 8 Tugas 3
     Route::group(['prefix' => 'barang', 'middleware' => 'authorize:ADM,MNG'], function () {
         Route::get('/', [BarangController::class, 'index']);      // Menampilkan halaman awal Barang
         Route::post('/list', [BarangController::class, 'list']);      // Menampilkan data Barang dalam bentuk jeson untuk datatables
@@ -123,5 +145,17 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/export_excel', [BarangController::class, 'export_excel']);      // export excel
         Route::get('/export_pdf', [BarangController::class, 'export_pdf']);      // export pdf
 
+    });
+
+    // UTS fitur t_stok
+    Route::group(['prefix' => 'stok'], function () {
+        Route::get('/', [stokcontroller::class, 'index']);
+        Route::post('/list', [stokcontroller::class, 'list']);
+        Route::get('/create', [stokcontroller::class, 'create']);
+        Route::post('/', [stokcontroller::class, 'store']);
+        Route::get('/{id}', [stokcontroller::class, 'show']);
+        Route::get('/{id}/edit', [stokcontroller::class, 'edit']);
+        Route::put('/{id}', [stokcontroller::class, 'update']);
+        Route::delete('/{id}', [stokcontroller::class, 'destroy']);
     });
 });

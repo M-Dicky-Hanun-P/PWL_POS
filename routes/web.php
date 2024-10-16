@@ -19,7 +19,6 @@ Route::post('register', [AuthController::class, 'store']);
 
 Route::middleware(['auth'])->group(function () {
 
-
     Route::get('/', [WelcomeController::class, 'index']);
 
     // Jobsheet 6 Praktikum 1, 2, 3
@@ -119,5 +118,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{id}/delete_ajax', [BarangController::class, 'confirm_ajax']); // Untuk menampilkan form barang delete barang Ajax
         Route::delete('/{id}/delete_ajax', [BarangController::class, 'delete_ajax']); // Untuk menghapus data barang  Ajax
         Route::delete('/{id}', [BarangController::class, 'destroy']);      // Menghapus data Barang
+        Route::get('/import', [BarangController::class, 'import']);      // ajax form upload excel
+        Route::post('/import_ajax', [BarangController::class, 'import_ajax']);      // ajax import excel
+
     });
 });

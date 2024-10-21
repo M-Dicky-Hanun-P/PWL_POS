@@ -1,15 +1,22 @@
 <?php
-    namespace App\Http\Controllers;
 
-    class WelcomeController extends Controller{
-        public function index(){
-            $breadcrumb = (object) [
-                'title' => 'Selamat Datang',
-                'list' => ['Home', 'Welcome']
-            ];
+namespace App\Http\Controllers;
 
-            $activeMenu = 'dashboard';
-            return view('welcome', ['breadcrumb' => $breadcrumb, 'activeMenu' => $activeMenu]);
-        }
+class WelcomeController extends Controller
+{
+    public function index()
+    {
+        $breadcrumb = (object) [
+            'title' => 'Selamat Datang',
+            'list' => ['Home', 'Welcome']
+        ];
+
+        $activeMenu = 'dashboard';
+        return view('welcome', ['breadcrumb' => $breadcrumb, 'activeMenu' => $activeMenu]);
     }
-?>
+
+    public function landing()
+    {
+        return view('landing');
+    }
+}

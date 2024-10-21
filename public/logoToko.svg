@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d47a1;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#1976d2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="timeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6f00;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffd180;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Outer circle (representing clock face) -->
+  <circle cx="200" cy="150" r="120" fill="url(#bgGradient)" stroke="#0d47a1" stroke-width="8"/>
+  
+  <!-- Clock markers -->
+  <g stroke="#ffffff" stroke-width="4">
+    <!-- 12, 3, 6, 9 markers -->
+    <line x1="200" y1="50" x2="200" y2="70" stroke-width="6"/>
+    <line x1="300" y1="150" x2="280" y2="150" stroke-width="6"/>
+    <line x1="200" y1="250" x2="200" y2="230" stroke-width="6"/>
+    <line x1="100" y1="150" x2="120" y2="150" stroke-width="6"/>
+    
+    <!-- Other hour markers -->
+    <line x1="259" y1="91" x2="247" y2="103" />
+    <line x1="259" y1="209" x2="247" y2="197" />
+    <line x1="141" y1="209" x2="153" y2="197" />
+    <line x1="141" y1="91" x2="153" y2="103" />
+  </g>
+
+  <!-- Star in center (diperkecil dan dinaikkan) -->
+  <path d="M200 85 L210 110 L238 110 L215 125 L225 150 L200 135 L175 150 L185 125 L162 110 L190 110 Z" 
+        fill="url(#timeGradient)" 
+        stroke="#ffffff" 
+        stroke-width="2"/>
+
+  <!-- Clock hands -->
+  <line x1="200" y1="150" x2="200" y2="90" stroke="#ffffff" stroke-width="4" />
+  <line x1="200" y1="150" x2="250" y2="150" stroke="#ffffff" stroke-width="4" />
+  <circle cx="200" cy="150" r="8" fill="#ffffff"/>
+
+  <!-- Text (Dipindahkan ke dalam bundaran) -->
+  <text x="200" y="180" 
+        font-family="Arial Black, Arial, sans-serif" 
+        font-size="22" 
+        fill="#ffffff" 
+        text-anchor="middle" 
+        font-weight="bold"
+        letter-spacing="1">TOKO BINTANG</text>
+  
+  <text x="200" y="210" 
+        font-family="Arial, sans-serif" 
+        font-size="24" 
+        fill="#ffffff" 
+        text-anchor="middle"
+        font-weight="bold"
+        letter-spacing="3">MDHP</text>
+</svg>

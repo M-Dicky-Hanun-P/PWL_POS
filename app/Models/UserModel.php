@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
 
 class UserModel extends Authenticatable
 {
@@ -14,7 +13,7 @@ class UserModel extends Authenticatable
     protected $table = 'm_user'; // Mendefinisikan nama tabel yang digunakan oleh model ini
     protected $primaryKey = 'user_id'; // Mendifinisikan primary key dari tabel yang digunakan
 
-    protected $fillable = ['username', 'password', 'nama', 'level_id', 'created_at', 'updated_at'];
+    protected $fillable = ['username', 'password', 'nama', 'level_id', 'avatar', 'created_at', 'updated_at'];
 
     protected $hidden = ['password']; // Tidak ditampilkan saat select
     protected $casts = ['password' => 'hashed']; // Password akan di-hash secara otomatis
@@ -40,4 +39,6 @@ class UserModel extends Authenticatable
     {
         return $this->level->level_kode;
     }
+
+
 }

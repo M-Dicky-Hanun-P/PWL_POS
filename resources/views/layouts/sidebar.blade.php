@@ -15,41 +15,53 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Menu Dashboard -->
             <li class="nav-item">
-                <a href="{{ url('/') }}" class="nav-link {{ $activeMenu == 'dashboard' ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                    <p>Dashboard</p>
+                <a href="{{ url('/dashboard') }}" class="brand-link">
+                    <img src="{{ asset('logoToko.svg') }}" alt="Logo Toko" class="brand-image img-circle" style="opacity: .9">
+                    <span class="brand-text font-weight-bold">Bintang MDHP</span>
                 </a>
             </li>
-            <!-- Tambahan Upload Profil dengan Submenu -->
-            <li class="nav-header">Profil Pengguna</li>
+            <li class="nav-header">Profile Pengguna</li>
             <li class="nav-item">
-                <a href="#" class="nav-link" data-toggle="collapse" data-target="#profilMenu">
-                    <i class="nav-icon fas fa-user-circle"></i>
-                    <p>
-                        Profil <i class="right fas fa-angle-down"></i>
-                    </p>
+                <a href="{{ url('profile/edit') }}" class="nav-link {{ $activeMenu == 'profile' ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>Edit Profile</p>
                 </a>
-                <ul id="profilMenu" class="nav collapse">
-                    <li class="nav-item">
-                        <a href="{{ url('/update_profil') }}" class="nav-link">
-                            <i class="nav-icon fas fa-upload"></i>
-                            <p>Update Profil</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ url('/ubah_data_diri') }}" class="nav-link">
-                            <i class="nav-icon fas fa-user-edit"></i>
-                            <p>Ubah Data Diri</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ url('/ubah_password') }}" class="nav-link">
-                            <i class="nav-icon fas fa-key"></i>
-                            <p>Ubah Password</p>
-                        </a>
-                    </li>
-                </ul>
             </li>
+
+            <!-- Profile Modal -->
+            <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document"> 
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="profileModalLabel">User Profile</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center"> <!-- Centered text -->
+                            <!-- Profile Information -->
+                            <img src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : asset('foto.png') }}"
+                                alt="User Avatar" class="img-circle mb-3" width="100">
+                            <p><strong>Username:</strong> {{ auth()->user()->username }}</p>
+                            <p><strong>Nama:</strong> {{ auth()->user()->nama }}</p>
+                            <p><strong>Level:</strong>
+                                {{ auth()->user()->level ? auth()->user()->level->level_nama : 'Tidak ada level' }}</p>
+                        </div>
+                        <div class="modal-footer justify-content-center"> <!-- Centered footer -->
+                            <a href="{{ url('profile/edit') }}" class="btn btn-primary">Edit Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link" data-toggle="modal" data-target="#profileModal">
+                    <i class="nav-icon fas fa-info-circle"></i>
+                    <p>Detail Profile</p>
+                </a>
+            </li>
+
             <!-- Data Pengguna -->
             <li class="nav-header">Data Pengguna</li>
             <li class="nav-item">
@@ -107,15 +119,81 @@
             <!-- Menu Logout -->
             <li class="nav-header">Keluar</li>
             <li class="nav-item">
-                <a href="{{ url('logout') }}" class="nav-link"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <a href="#" class="nav-link logout-link" id="logout-link">
                     <i class="nav-icon fas fa-sign-out-alt"></i>
                     <p>Logout</p>
                 </a>
-                <form id="logout-form" action="{{ url('logout') }}" method="GET" style="display: none;">
-                    @csrf
-                </form>
             </li>
+            
+            <style>
+                .logout-link {
+                    background-color: #dc3545; 
+                    text-align: center;
+                    color: white;
+                    border-radius: 5px;
+                    transition: background-color 0.3s ease;
+                }
+            
+                .logout-link i, .logout-link p {
+                    color: white;
+                }
+            
+                .logout-link:hover {
+                    background-color: #c82333;
+                    color: white;
+                }
+
+                .logout-link:active {
+                    background-color: #bd2130;
+                }
+            </style>
+            
         </ul>
     </nav>
 </div>
+
+<script>
+    document.getElementById('logout-link').addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent default action of the link
+
+        // Trigger SweetAlert for confirmation
+        Swal.fire({
+            title: 'Apakah Anda yakin ingin keluar?',
+            text: "Anda tidak dapat membatalkan tindakan ini!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, keluar!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // AJAX request for logout
+                $.ajax({
+                    url: '{{ url('logout') }}', // Logout URL
+                    type: 'GET', // Request method
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        Swal.fire(
+                            'Berhasil!',
+                            'Anda telah berhasil keluar.',
+                            'success'
+                        ).then(() => {
+                            window.location.href =
+                            "{{ url('/login') }}";
+                        });
+                    },
+                    error: function(xhr) {
+                        Swal.fire(
+                            'Gagal!',
+                            'Terjadi kesalahan saat logout. Coba lagi nanti.',
+                            'error'
+                        );
+                    }
+                });
+            }
+        });
+    });
+</script>

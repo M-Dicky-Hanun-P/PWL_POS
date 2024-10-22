@@ -507,7 +507,7 @@ class userController extends Controller
     public function update_info(Request $request)
     {
         $rules = [
-            'username' => 'required|max:20|unique:m_user,username,' . $request->user()->user_id . ',user_id',  // Mengabaikan username milik user saat ini
+            'username' => 'required|max:20|unique:m_user,username,' . $request->user()->user_id . ',user_id',
             'nama'     => 'required|max:100',
             'password' => 'nullable|min:6|confirmed',  // Password hanya wajib jika diisi, dan harus dikonfirmasi
         ];

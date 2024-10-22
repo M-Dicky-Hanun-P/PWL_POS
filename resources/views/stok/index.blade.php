@@ -110,17 +110,17 @@
                 }, {
                     data: "supplier.supplier_id",
                     className: "",
-                    orderable: true,
+                    orderable: false,
                     searchable: true
                 }, {
                     data: "barang.barang_id",
                     className: "",
-                    orderable: true,
+                    orderable: false,
                     searchable: true
                 }, {
                     data: "user.user_id",
                     className: "",
-                    orderable: true,
+                    orderable: false,
                     searchable: true
                 }, {
                     data: "stok_tanggal",

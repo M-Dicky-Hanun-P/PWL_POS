@@ -174,7 +174,7 @@
                     data: "user.user_id",
                     className: "",
                     width: "14%",
-                    orderable: true,
+                    orderable: false,
                     searchable: true
                 }, {
                     data: "penjualan_tanggal",
@@ -222,7 +222,7 @@
                     data: "barang.barang_id",
                     className: "",
                     width: "37%",
-                    orderable: true,
+                    orderable: false,
                     searchable: false
                 }, {
                     data: "harga",

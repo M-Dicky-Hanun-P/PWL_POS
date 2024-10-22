@@ -62,42 +62,25 @@ class StokController extends Controller
             })
             ->rawColumns(['aksi']) // memberitahu bahwa kolom aksi adalah html 
             ->make(true);
-
-        // return DataTables::of($stok)
-        //     // menambahkan kolom index / no urut (default nama kolom: DT_RowIndex)
-        //     ->addIndexColumn()
-        //     ->addColumn('aksi', function ($stok) { // menambahkan kolom aksi
-        //         $btn = '<a href="' . url('/stok/' . $stok->stok_id) . '" class="btn btn-info btn-sm">Detail</a> ';
-        //         $btn .= '<a href="' . url('/stok/' . $stok->stok_id . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
-        //         $btn .= '<form class="d-inline-block" method="POST" action="' .
-        //             url('/stok/' . $stok->stok_id) . '">'
-        //             . csrf_field() . method_field('DELETE') .
-        //             '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm
-        //             (\'Apakah Anda yakit menghapus data ini?\');">Hapus</button></form>';
-        //         return $btn;
-        //     })
-        //     ->rawColumns(['aksi']) // memberitahu bahwa kolom aksi adalah html
-        //     ->make(true);
-
     }
 
     // Menampilkan halaman form tambah stok 
-    public function create()
-    {
-        $breadcrumb = (object) [
-            'title' => 'Tambah Stok',
-            'list' => ['Home', 'Stok', 'Tambah']
-        ];
-        $page = (object) [
-            'title' => 'Tambah Stok baru'
-        ];
+    // public function create()
+    // {
+    //     $breadcrumb = (object) [
+    //         'title' => 'Tambah Stok',
+    //         'list' => ['Home', 'Stok', 'Tambah']
+    //     ];
+    //     $page = (object) [
+    //         'title' => 'Tambah Stok baru'
+    //     ];
 
-        $supplier = SupplierModel::all(); // ambil data supplier untuk filter supplier
-        $barang = BarangModel::all(); // ambil data supplier untuk filter supplier
-        $user = UserModel::all(); // ambil data supplier untuk filter supplier
-        $activeMenu = 'stok'; // set menu yang sedang aktif
-        return view('stok.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'supplier' => $supplier, 'barang' => $barang, 'user' => $user, 'activeMenu' => $activeMenu]);
-    }
+    //     $supplier = SupplierModel::all(); // ambil data supplier untuk filter supplier
+    //     $barang = BarangModel::all(); // ambil data supplier untuk filter supplier
+    //     $user = UserModel::all(); // ambil data supplier untuk filter supplier
+    //     $activeMenu = 'stok'; // set menu yang sedang aktif
+    //     return view('stok.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'supplier' => $supplier, 'barang' => $barang, 'user' => $user, 'activeMenu' => $activeMenu]);
+    // }
 
     public function create_ajax()
     {

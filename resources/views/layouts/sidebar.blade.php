@@ -16,7 +16,8 @@
             <!-- Menu Dashboard -->
             <li class="nav-item">
                 <a href="{{ url('/dashboard') }}" class="brand-link">
-                    <img src="{{ asset('logoToko.svg') }}" alt="Logo Toko" class="brand-image img-circle" style="opacity: .9">
+                    <img src="{{ asset('logoToko.svg') }}" alt="Logo Toko" class="brand-image img-circle"
+                        style="opacity: .9">
                     <span class="brand-text font-weight-bold">Bintang MDHP</span>
                 </a>
             </li>
@@ -31,7 +32,7 @@
             <!-- Profile Modal -->
             <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel"
                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document"> 
+                <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="profileModalLabel">User Profile</h5>
@@ -124,30 +125,37 @@
                     <p>Logout</p>
                 </a>
             </li>
-            
+
             <style>
-                .logout-link {
-                    background-color: #dc3545; 
-                    text-align: center;
-                    color: white;
+                .nav-sidebar .nav-link {
+                    transition: background-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
                     border-radius: 5px;
-                    transition: background-color 0.3s ease;
-                }
-            
-                .logout-link i, .logout-link p {
-                    color: white;
-                }
-            
-                .logout-link:hover {
-                    background-color: #c82333;
-                    color: white;
                 }
 
-                .logout-link:active {
-                    background-color: #bd2130;
+                .nav-sidebar .nav-link:hover {
+                    background: linear-gradient(45deg, #0658fae9, #00f2fe);
+                    color: white;
+                    transform: scale(1.1);
+                    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+                }
+
+                .nav-sidebar .nav-link i {
+                    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+                }
+
+                .nav-sidebar .nav-link:hover i {
+                    transform: scale(1.3) rotate(20deg);
+                }
+
+                .logout-link:hover {
+                    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+                    color: white;
+                    transform: scale(1.1);
+                    box-shadow: 0 5px 10px rgba(115, 210, 0, 0.3);
                 }
             </style>
-            
+
+
         </ul>
     </nav>
 </div>
@@ -182,7 +190,7 @@
                             'success'
                         ).then(() => {
                             window.location.href =
-                            "{{ url('/login') }}";
+                                "{{ url('/login') }}";
                         });
                     },
                     error: function(xhr) {

@@ -25,7 +25,7 @@
         background: url('{{ asset('bglogin.jpg') }}') no-repeat center center;
         background-size: cover;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        opacity: 0.7;
+        opacity: 0.9;
     }
 
     .login-box .card-header {

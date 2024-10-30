@@ -169,7 +169,7 @@ class PenjualanController extends Controller
             PenjualanModel::create($request->all());
             return response()->json([
                 'status'    => true,
-                'message'   => 'Data user berhasil disimpan'
+                'message'   => 'Data penjualan berhasil disimpan'
             ]);
         }
         redirect('/');

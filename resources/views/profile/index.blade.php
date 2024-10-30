@@ -47,7 +47,8 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-gradient-primary btn-block shadow-sm">Simpan Perubahan Foto</button>
+                    <button type="submit" class="btn btn-gradient-primary btn-block shadow-sm">Simpan Perubahan
+                        Foto</button>
                 </form>
             </div>
         </div>
@@ -124,23 +125,26 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-gradient-primary btn-block shadow-sm">Simpan Perubahan Biodata</button>
+                    <button type="submit" class="btn btn-gradient-primary btn-block shadow-sm">Simpan Perubahan
+                        Biodata</button>
                 </form>
             </div>
         </div>
     </div>
 
     <style>
-.btn-gradient-primary {
-    background: linear-gradient(45deg, #4facfe, #00f2fe); /* Gradasi biru dan hijau laut */
-    border: none;
-    color: white;
-}
+        .btn-gradient-primary {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            /* Gradasi biru dan hijau laut */
+            border: none;
+            color: white;
+        }
 
-.btn-gradient-primary:hover {
-    background: linear-gradient(45deg, #00c6ff, #0072ff); /* Warna lebih intens saat di-hover */
-    color: white;
-}
+        .btn-gradient-primary:hover {
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            /* Warna lebih intens saat di-hover */
+            color: white;
+        }
 
 
         .img-thumbnail {

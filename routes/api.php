@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\LogoutController;
+use App\Http\Controllers\Api\LevelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request){
     return $request->user();
 });
 Route::post('/logout', App\Http\Controllers\Api\LogoutController::class)->name('logout');
+
+
+Route::group(['prefix'=>'levels'], function(){
+    Route::get('/', [LevelController::class, 'index']);
+    Route::post('/', [LevelController::class, 'store']);
+    Route::get('/{level}', [LevelController::class, 'show']);
+    Route::put('/{level}', [LevelController::class, 'update']);
+    Route::delete('/{level}', [LevelController::class, 'destroy']);
+});

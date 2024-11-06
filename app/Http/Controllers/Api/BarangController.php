@@ -49,18 +49,19 @@ class BarangController extends Controller
             'harga_jual' => 'required',
             'transaksi' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
-        // if validations fails
+    
+        // if validation fails
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
-
+    
         // Handle file upload
+        $transaksiPath = null;
         if ($request->hasFile('transaksi')) {
             $transaksi = $request->file('transaksi');
-            $transaksi->storeAs('public/posts', $transaksi->hashName());
+            $transaksiPath = $transaksi->store('transaksi', 'public');
         }
-
+    
         // create barang
         $barang = BarangModel::create([
             'kategori_id' => $request->kategori_id,
@@ -68,20 +69,21 @@ class BarangController extends Controller
             'barang_nama' => $request->barang_nama,
             'harga_beli' => $request->harga_beli,
             'harga_jual' => $request->harga_jual,
-            'transaksi' => $transaksi->hashName(),
+            'transaksi' => $transaksiPath,
         ]);
-
-        // return response JSON if user is created
+    
+        // return response JSON if the item is created
         if ($barang) {
             return response()->json([
                 'success' => true,
                 'barang' => $barang,
             ], 201);
         }
-
+    
         // return JSON if insert process failed
         return response()->json([
             'success' => false,
         ], 409);
     }
+    
 }

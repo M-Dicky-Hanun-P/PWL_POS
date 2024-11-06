@@ -56,9 +56,10 @@ class PenjualanController extends Controller
         }
 
         // Handle file upload
+        $image = null;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $image->storeAs('public/posts', $image->hashName());
+            $image = $image->store('image', 'public');
         }
 
         // create penjualan
@@ -67,7 +68,7 @@ class PenjualanController extends Controller
             'pembeli' => $request->pembeli,
             'penjualan_kode' => $request->penjualan_kode,
             'penjualan_tanggal' => $request->penjualan_tanggal,
-            'image' => $image->hashName(),
+            'image' => $image,
         ]);
 
         // return response JSON if user is created

@@ -33,7 +33,6 @@
                         <th>Tanggal Penjualan</th>
                         <td>{{ $penjualan->penjualan_tanggal }}</td>
                     </tr>
-                    
                 </table>
             @endempty
             <a href="{{ url('penjualan') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
